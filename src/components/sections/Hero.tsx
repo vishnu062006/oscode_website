@@ -11,6 +11,10 @@ const BAR_COUNT = 24
 const MIN_BAR_HEIGHT = 12
 const BAR_GROUPS = 6
 const BAR_HEIGHT_STEP = 4
+const MAGNETIC_STRENGTH = 0.25
+
+const getBarHeight = (index: number) =>
+  MIN_BAR_HEIGHT + (index % BAR_GROUPS) * BAR_HEIGHT_STEP
 
 const MagneticButton = ({
   className,
@@ -28,8 +32,8 @@ const MagneticButton = ({
     const rect = event.currentTarget.getBoundingClientRect()
     const offsetX = event.clientX - rect.left - rect.width / 2
     const offsetY = event.clientY - rect.top - rect.height / 2
-    x.set(offsetX * 0.25)
-    y.set(offsetY * 0.25)
+    x.set(offsetX * MAGNETIC_STRENGTH)
+    y.set(offsetY * MAGNETIC_STRENGTH)
   }
 
   const handleLeave = () => {
@@ -97,7 +101,7 @@ const HeroVisual = () => (
             <div
               key={`bar-${index}`}
               className="h-6 rounded-md bg-gradient-to-t from-blue-500/20 to-cyan-400/60 opacity-70"
-              style={{ height: `${MIN_BAR_HEIGHT + (index % BAR_GROUPS) * BAR_HEIGHT_STEP}px` }}
+              style={{ height: `${getBarHeight(index)}px` }}
             />
           ))}
         </div>
