@@ -15,6 +15,8 @@ export default {
         'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
         'spin-slow': 'spin 20s linear infinite',
         marquee: 'marquee 30s linear infinite',
+        'gradient-shift': 'gradientShift 10s ease-in-out infinite',
+        'glow-pulse': 'pulseGlow 4s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -28,6 +30,10 @@ export default {
         marquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        gradientShift: {
+          '0%, 100%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
         },
       },
       backgroundImage: {
