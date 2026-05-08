@@ -3,9 +3,14 @@ import { motion } from 'framer-motion'
 import { domains } from '../../data/domains'
 import { fadeUp, staggerContainer } from '../../hooks/useScrollReveal'
 
-const HIGHLIGHT_SEPARATOR = ' · '
+const HIGHLIGHT_DISPLAY_SEPARATOR = ' · '
 
-const DomainCard = ({ title, summary, highlights, icon: Icon }: (typeof domains)[number]) => (
+const DomainCard = ({
+  title,
+  description,
+  focusAreas,
+  icon: Icon,
+}: (typeof domains)[number]) => (
   <div className="glass-card group relative overflow-hidden p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-400/40">
     <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
       <div className="absolute -inset-20 bg-gradient-to-r from-violet-500/20 via-blue-500/10 to-cyan-400/20 blur-3xl" />
@@ -17,9 +22,9 @@ const DomainCard = ({ title, summary, highlights, icon: Icon }: (typeof domains)
         </div>
         <h3 className="text-lg font-semibold text-white">{title}</h3>
       </div>
-      <p className="text-sm text-white/70">{summary}</p>
+      <p className="text-sm text-white/70">{description}</p>
       <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">
-        {highlights.join(HIGHLIGHT_SEPARATOR)}
+        {focusAreas.join(HIGHLIGHT_DISPLAY_SEPARATOR)}
       </p>
     </div>
   </div>

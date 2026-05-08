@@ -7,14 +7,14 @@ import { Badge } from '../ui/badge'
 import { Button, buttonVariants } from '../ui/button'
 import { fadeUp, staggerContainer } from '../../hooks/useScrollReveal'
 
-const BAR_COUNT = 24
-const MIN_BAR_HEIGHT = 12
-const BAR_GROUPS = 6
-const BAR_HEIGHT_STEP = 4
-const MAGNETIC_STRENGTH = 0.25
+const CONTRIBUTION_BAR_COUNT = 24
+const CONTRIBUTION_BAR_MIN_HEIGHT = 12
+const CONTRIBUTION_BAR_GROUPS = 6
+const CONTRIBUTION_BAR_HEIGHT_STEP = 4
+const MAGNETIC_PULL_FACTOR = 0.25
 
 const getBarHeight = (index: number) =>
-  MIN_BAR_HEIGHT + (index % BAR_GROUPS) * BAR_HEIGHT_STEP
+  CONTRIBUTION_BAR_MIN_HEIGHT + (index % CONTRIBUTION_BAR_GROUPS) * CONTRIBUTION_BAR_HEIGHT_STEP
 
 const MagneticButton = ({
   className,
@@ -32,8 +32,8 @@ const MagneticButton = ({
     const rect = event.currentTarget.getBoundingClientRect()
     const offsetX = event.clientX - rect.left - rect.width / 2
     const offsetY = event.clientY - rect.top - rect.height / 2
-    x.set(offsetX * MAGNETIC_STRENGTH)
-    y.set(offsetY * MAGNETIC_STRENGTH)
+    x.set(offsetX * MAGNETIC_PULL_FACTOR)
+    y.set(offsetY * MAGNETIC_PULL_FACTOR)
   }
 
   const handleLeave = () => {
@@ -97,7 +97,7 @@ const HeroVisual = () => (
           <span className="text-cyan-300">+42%</span>
         </div>
         <div className="mt-4 grid grid-cols-12 gap-1">
-          {Array.from({ length: BAR_COUNT }).map((_, index) => (
+          {Array.from({ length: CONTRIBUTION_BAR_COUNT }).map((_, index) => (
             <div
               key={`bar-${index}`}
               className="h-6 rounded-md bg-gradient-to-t from-blue-500/20 to-cyan-400/60 opacity-70"
