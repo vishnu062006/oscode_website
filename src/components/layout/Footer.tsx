@@ -14,7 +14,7 @@ const socialIcons = {
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#03040d] text-[var(--text-secondary)]">
+    <footer className="bg-[var(--bg-base)] text-[var(--text-secondary)]">
       <div className="h-px w-full bg-gradient-to-r from-violet-500 via-blue-500/40 to-cyan-400/80" />
       <div className="section-padding grid gap-12 md:grid-cols-[1.3fr_1fr_1fr]">
         <div className="space-y-4">

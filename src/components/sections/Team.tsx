@@ -39,7 +39,7 @@ export const Team = () => {
               </div>
               <div className="relative z-10 h-24 w-24">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-violet-500 via-blue-400 to-cyan-400 p-[2px] transition-transform duration-700 group-hover:rotate-[360deg]">
-                  <div className="h-full w-full rounded-full bg-[#0d111f]" />
+                  <div className="h-full w-full rounded-full bg-[var(--bg-surface)]" />
                 </div>
                 <img
                   src={getAvatarUrl(member.name)}
