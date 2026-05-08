@@ -13,11 +13,13 @@ import { Stats } from './components/sections/Stats'
 import { Team } from './components/sections/Team'
 import { TechDomains } from './components/sections/TechDomains'
 
+const LOADING_DURATION_MS = 2400
+
 function App() {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setIsLoading(false), 2400)
+    const timer = window.setTimeout(() => setIsLoading(false), LOADING_DURATION_MS)
     document.body.style.overflow = isLoading ? 'hidden' : 'auto'
     return () => {
       window.clearTimeout(timer)

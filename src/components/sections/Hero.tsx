@@ -7,6 +7,11 @@ import { Badge } from '../ui/badge'
 import { Button, buttonVariants } from '../ui/button'
 import { fadeUp, staggerContainer } from '../../hooks/useScrollReveal'
 
+const BAR_COUNT = 24
+const MIN_BAR_HEIGHT = 12
+const BAR_GROUPS = 6
+const BAR_HEIGHT_STEP = 4
+
 const MagneticButton = ({
   className,
   children,
@@ -88,11 +93,11 @@ const HeroVisual = () => (
           <span className="text-cyan-300">+42%</span>
         </div>
         <div className="mt-4 grid grid-cols-12 gap-1">
-          {Array.from({ length: 24 }).map((_, index) => (
+          {Array.from({ length: BAR_COUNT }).map((_, index) => (
             <div
               key={`bar-${index}`}
               className="h-6 rounded-md bg-gradient-to-t from-blue-500/20 to-cyan-400/60 opacity-70"
-              style={{ height: `${12 + (index % 6) * 4}px` }}
+              style={{ height: `${MIN_BAR_HEIGHT + (index % BAR_GROUPS) * BAR_HEIGHT_STEP}px` }}
             />
           ))}
         </div>

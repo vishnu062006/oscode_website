@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 
+const HOVER_SCALE = 1.65
+
 export const CursorGlow = () => {
   const [enabled, setEnabled] = useState(false)
   const x = useMotionValue(-100)
@@ -27,7 +29,7 @@ export const CursorGlow = () => {
     const updateHover = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null
       const isInteractive = Boolean(target?.closest('a, button, [data-cursor="hover"]'))
-      scale.set(isInteractive ? 1.65 : 1)
+      scale.set(isInteractive ? HOVER_SCALE : 1)
     }
 
     window.addEventListener('mousemove', updatePosition)
