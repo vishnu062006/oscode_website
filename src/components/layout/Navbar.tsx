@@ -11,7 +11,10 @@ export const Navbar = () => {
   const [activeSection, setActiveSection] = useState('about')
   const sectionIds = useMemo(() => navLinks.map((link) => link.href.replace('#', '')), [])
   const { scrollY } = useScroll()
-  const background = useTransform(scrollY, [0, 80], ['rgba(5,5,8,0)', 'rgba(5,5,8,0.82)'])
+  const background = useTransform(scrollY, [0, 80], [
+    'rgba(var(--bg-base-rgb), 0)',
+    'rgba(var(--bg-base-rgb), 0.82)',
+  ])
   const border = useTransform(scrollY, [0, 80], ['rgba(255,255,255,0)', 'rgba(255,255,255,0.06)'])
   const blur = useTransform(scrollY, [0, 80], [0, 16])
   const shadow = useTransform(scrollY, [0, 80], ['0 0 0 rgba(0,0,0,0)', '0 10px 30px rgba(0,0,0,0.25)'])

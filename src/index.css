@@ -50,6 +50,10 @@ html {
     @apply rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-xl shadow-glow;
   }
 
+  .bg-surface {
+    background-color: var(--bg-surface);
+  }
+
   .gradient-text {
     @apply bg-gradient-to-r from-violet-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent;
   }
@@ -200,9 +204,9 @@ canvas {
 @keyframes meshShift {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: scale(1);
   }
   50% {
-    transform: translate3d(4%, -2%, 0) scale(1.05);
+    transform: translate(4%, -2%) scale(1.05);
   }
 }

@@ -13,7 +13,7 @@ const CONTRIBUTION_BAR_GROUPS = 6
 const CONTRIBUTION_BAR_HEIGHT_STEP = 4
 const MAGNETIC_PULL_FACTOR = 0.25
 
-const getBarHeight = (index: number) =>
+const calculateContributionBarHeight = (index: number) =>
   CONTRIBUTION_BAR_MIN_HEIGHT + (index % CONTRIBUTION_BAR_GROUPS) * CONTRIBUTION_BAR_HEIGHT_STEP
 
 const MagneticButton = ({
@@ -96,12 +96,17 @@ const HeroVisual = () => (
           <span>Live Contributions</span>
           <span className="text-cyan-300">+42%</span>
         </div>
-        <div className="mt-4 grid grid-cols-12 gap-1">
+        <div
+          className="mt-4 grid grid-cols-12 gap-1"
+          role="img"
+          aria-label="Live contribution activity graph"
+        >
           {Array.from({ length: CONTRIBUTION_BAR_COUNT }).map((_, index) => (
             <div
               key={`bar-${index}`}
               className="h-6 rounded-md bg-gradient-to-t from-blue-500/20 to-cyan-400/60 opacity-70"
-              style={{ height: `${getBarHeight(index)}px` }}
+              style={{ height: `${calculateContributionBarHeight(index)}px` }}
+              aria-hidden="true"
             />
           ))}
         </div>
