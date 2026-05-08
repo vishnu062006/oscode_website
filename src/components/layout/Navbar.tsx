@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion, useMotionTemplate, useScroll, useTransform } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
@@ -8,12 +8,37 @@ import { Logo } from './Logo'
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('about')
+  const sectionIds = useMemo(() => navLinks.map((link) => link.href.replace('#', '')), [])
   const { scrollY } = useScroll()
-  const background = useTransform(scrollY, [0, 80], ['rgba(5,5,8,0)', 'rgba(5,5,8,0.82)'])
+  const background = useTransform(scrollY, [0, 80], [
+    'rgba(var(--bg-base-rgb), 0)',
+    'rgba(var(--bg-base-rgb), 0.82)',
+  ])
   const border = useTransform(scrollY, [0, 80], ['rgba(255,255,255,0)', 'rgba(255,255,255,0.06)'])
   const blur = useTransform(scrollY, [0, 80], [0, 16])
   const shadow = useTransform(scrollY, [0, 80], ['0 0 0 rgba(0,0,0,0)', '0 10px 30px rgba(0,0,0,0.25)'])
   const backdropFilter = useMotionTemplate`blur(${blur}px)`
+
+  useEffect(() => {
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((section): section is HTMLElement => Boolean(section))
+    if (!sections.length) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActiveSection(entry.target.id)
+        })
+      },
+      { rootMargin: '-40% 0px -50% 0px', threshold: 0 }
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
+    return () => observer.disconnect()
+  }, [sectionIds])
 
   return (
     <motion.header
@@ -25,14 +50,21 @@ export const Navbar = () => {
         <Logo />
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
-            <a key={link.label} href={link.href} className="nav-link">
+            <a
+              key={link.label}
+              href={link.href}
+              className="nav-link"
+              data-active={activeSection === link.href.replace('#', '')}
+              aria-current={activeSection === link.href.replace('#', '') ? 'page' : undefined}
+            >
               {link.label}
             </a>
           ))}
         </nav>
         <div className="hidden md:flex">
           <Button
-            className="button-shimmer border border-violet-500/40 bg-gradient-to-r from-violet-500 to-blue-500 text-white shadow-glow hover:scale-[1.03]"
+            className="button-shimmer border border-violet-400/40 bg-gradient-to-r from-violet-500 via-blue-500 to-cyan-400 text-white shadow-[0_12px_40px_rgba(59,130,246,0.35)] hover:scale-[1.03]"
+            data-cursor="hover"
           >
             Join Us
           </Button>

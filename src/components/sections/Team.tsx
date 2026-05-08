@@ -32,16 +32,19 @@ export const Team = () => {
             <motion.div
               key={member.name}
               variants={fadeUp}
-              className="glass-card group flex flex-col items-center p-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-violet-500/40"
+              className="glass-card group relative flex flex-col items-center p-6 text-center transition-all duration-300 hover:-translate-y-2 hover:border-violet-500/40"
             >
-              <div className="relative h-20 w-20">
+              <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                <div className="absolute -inset-20 bg-gradient-to-br from-violet-500/20 via-blue-500/10 to-cyan-400/20 blur-3xl" />
+              </div>
+              <div className="relative z-10 h-24 w-24">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-violet-500 via-blue-400 to-cyan-400 p-[2px] transition-transform duration-700 group-hover:rotate-[360deg]">
-                  <div className="h-full w-full rounded-full bg-[#0d0d14]" />
+                  <div className="h-full w-full rounded-full bg-surface" />
                 </div>
                 <img
                   src={getAvatarUrl(member.name)}
                   alt={member.name}
-                  className="relative z-10 h-20 w-20 rounded-full border border-white/10"
+                  className="relative z-10 h-24 w-24 rounded-full border border-white/10 object-cover"
                 />
               </div>
               <h3 className="mt-4 text-lg font-semibold text-white">{member.name}</h3>
@@ -49,7 +52,7 @@ export const Team = () => {
               <p className="mt-1 text-xs font-mono text-[var(--text-muted)]">
                 {member.year} · {member.branch}
               </p>
-              <div className="mt-4 flex gap-3">
+              <div className="mt-4 flex gap-3 opacity-0 transition-all duration-300 group-hover:translate-y-1 group-hover:opacity-100">
                 {Object.entries(member.socials).map(([key, value]) => {
                   if (!value) return null
                   const Icon = socialIcons[key as keyof typeof socialIcons]

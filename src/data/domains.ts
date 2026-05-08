@@ -10,39 +10,46 @@ import {
 
 export interface Domain {
   title: string
-  tags: string[]
+  description: string
+  focusAreas: string[]
   icon: LucideIcon
 }
 
 export const domains: Domain[] = [
   {
     title: 'Web Dev',
-    tags: ['React', 'Next.js', 'Node.js'],
+    description: 'Ship full-stack experiences from concept to production.',
+    focusAreas: ['Product engineering', 'Design systems', 'Performance'],
     icon: Code2,
   },
   {
     title: 'AI / ML',
-    tags: ['PyTorch', 'HuggingFace', 'LLMs'],
+    description: 'Research, prototype, and deploy intelligent systems.',
+    focusAreas: ['Model building', 'Applied AI', 'Data tooling'],
     icon: Brain,
   },
   {
     title: 'Open Source',
-    tags: ['Git', 'GitHub', 'CI/CD'],
+    description: 'Build in public with real users and contributors.',
+    focusAreas: ['Maintainer workflow', 'Collaboration', 'Impact'],
     icon: GitBranch,
   },
   {
     title: 'Competitive Programming',
-    tags: ['C++', 'Algorithms', 'LeetCode'],
+    description: 'Sharpen problem-solving skills with regular sprints.',
+    focusAreas: ['Algorithms', 'Contests', 'Mentorship'],
     icon: Trophy,
   },
   {
     title: 'UI / UX',
-    tags: ['Figma', 'Design Systems', 'Prototyping'],
+    description: 'Design intuitive interfaces that feel premium.',
+    focusAreas: ['Research', 'Prototyping', 'Interaction'],
     icon: Palette,
   },
   {
     title: 'Cloud & DevOps',
-    tags: ['Docker', 'AWS', 'Kubernetes'],
+    description: 'Deploy, scale, and monitor resilient infrastructure.',
+    focusAreas: ['Cloud stacks', 'Automation', 'Reliability'],
     icon: Cloud,
   },
 ]

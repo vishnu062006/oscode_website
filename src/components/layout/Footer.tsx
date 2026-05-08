@@ -14,14 +14,14 @@ const socialIcons = {
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#030305] text-[var(--text-secondary)]">
-      <div className="h-px w-full bg-gradient-to-r from-violet-500 via-blue-500/40 to-violet-500" />
+    <footer className="bg-[var(--bg-base)] text-[var(--text-secondary)]">
+      <div className="h-px w-full bg-gradient-to-r from-violet-500 via-blue-500/40 to-cyan-400/80" />
       <div className="section-padding grid gap-12 md:grid-cols-[1.3fr_1fr_1fr]">
         <div className="space-y-4">
           <Logo />
-          <p className="max-w-sm text-sm text-[var(--text-secondary)]">
-            A community of builders crafting real-world open-source projects and
-            launching developer careers.
+          <p className="max-w-sm text-sm text-white/70">
+            A community of builders crafting real-world open-source projects and launching
+            developer careers.
           </p>
           <div className="flex items-center gap-3">
             {socialLinks.map((link) => {
@@ -58,7 +58,7 @@ export const Footer = () => {
           <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
             Contact
           </h3>
-          <div className="space-y-3 text-sm">
+          <div className="space-y-3 text-sm text-white/70">
             <div className="flex items-center gap-2">
               <Mail className="h-4 w-4 text-white/70" />
               <span>oscode@bmsce.ac.in</span>
@@ -68,7 +68,10 @@ export const Footer = () => {
               <span>Bengaluru, India</span>
             </div>
           </div>
-          <Button className="button-shimmer mt-2 w-full border border-cyan-500/40 bg-white/5 text-white hover:bg-cyan-500/10">
+          <Button
+            className="button-shimmer mt-2 w-full border border-cyan-500/40 bg-white/5 text-white hover:bg-cyan-500/10"
+            data-cursor="hover"
+          >
             Join Discord
           </Button>
         </div>

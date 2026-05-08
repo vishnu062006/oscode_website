@@ -16,7 +16,7 @@ export const Contact = () => {
       >
         <motion.div variants={fadeUp} className="space-y-4">
           <h2 className="text-3xl font-semibold md:text-4xl">Let’s Build Together</h2>
-          <p className="mx-auto max-w-2xl text-[var(--text-secondary)]">
+          <p className="mx-auto max-w-2xl text-white/70">
             Ready to contribute, collaborate, and ship? Join the OSCode Club community and get
             access to mentors, projects, and events.
           </p>
@@ -35,10 +35,16 @@ export const Contact = () => {
           <Button
             size="lg"
             className="button-shimmer bg-gradient-to-r from-violet-500 to-blue-500 text-white shadow-glow"
+            data-cursor="hover"
           >
             Join the Club
           </Button>
-          <Button size="lg" variant="outline" className="border-white/20 text-white">
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-white/20 text-white"
+            data-cursor="hover"
+          >
             Partner with Us
           </Button>
         </motion.div>

@@ -3,26 +3,34 @@ import { motion } from 'framer-motion'
 import { domains } from '../../data/domains'
 import { fadeUp, staggerContainer } from '../../hooks/useScrollReveal'
 
-const DomainCard = ({ title, tags, icon: Icon }: (typeof domains)[number]) => (
-  <div className="glass-card group flex flex-col gap-4 p-6 transition-all duration-300 hover:border-cyan-400/40">
-    <Icon className="h-12 w-12 text-white transition-transform duration-300 group-hover:scale-110" />
-    <h3 className="text-lg font-semibold text-white">{title}</h3>
-    <div className="flex flex-wrap gap-2">
-      {tags.map((tag) => (
-        <span
-          key={tag}
-          className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-xs font-mono text-[var(--text-secondary)] transition-colors hover:bg-white/10"
-        >
-          {tag}
-        </span>
-      ))}
+const HIGHLIGHT_DISPLAY_SEPARATOR = ' · '
+
+const DomainCard = ({
+  title,
+  description,
+  focusAreas,
+  icon: Icon,
+}: (typeof domains)[number]) => (
+  <div className="glass-card group relative overflow-hidden p-6 transition-all duration-300 hover:-translate-y-2 hover:border-cyan-400/40">
+    <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      <div className="absolute -inset-20 bg-gradient-to-r from-violet-500/20 via-blue-500/10 to-cyan-400/20 blur-3xl" />
+    </div>
+    <div className="relative z-10 flex flex-col gap-4">
+      <div className="flex items-center gap-4">
+        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/5 text-white shadow-glow transition-transform duration-300 group-hover:scale-110">
+          <Icon className="h-6 w-6" />
+        </div>
+        <h3 className="text-lg font-semibold text-white">{title}</h3>
+      </div>
+      <p className="text-sm text-white/70">{description}</p>
+      <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">
+        {focusAreas.join(HIGHLIGHT_DISPLAY_SEPARATOR)}
+      </p>
     </div>
   </div>
 )
 
 export const TechDomains = () => {
-  const marqueeItems = [...domains, ...domains]
-
   return (
     <section id="domains" className="section-padding section-fade">
       <motion.div
@@ -39,22 +47,12 @@ export const TechDomains = () => {
           </p>
         </motion.div>
 
-        <div className="hidden gap-6 md:grid md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {domains.map((domain) => (
             <motion.div key={domain.title} variants={fadeUp}>
               <DomainCard {...domain} />
             </motion.div>
           ))}
-        </div>
-
-        <div className="relative overflow-hidden md:hidden">
-          <div className="flex w-[200%] gap-4 animate-marquee">
-            {marqueeItems.map((domain, index) => (
-              <div key={`${domain.title}-${index}`} className="w-1/2 pr-4">
-                <DomainCard {...domain} />
-              </div>
-            ))}
-          </div>
         </div>
       </motion.div>
     </section>
